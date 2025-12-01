@@ -19,7 +19,7 @@
                 'theme_location' => 'footer_menu',
                 'container'      => false,
                 'menu_class'     => 'footer-nav-list', // קלאס ייחודי לפוטר 
-                'depth'          => 1 // מציג רק רמה אחת (בלי תתי תפריטים בפוטר)
+                'depth'          => 1 // מציג רק רמה אחת (בלי תתי תפריטים בפוטר) 
             ));
             ?>
         </div>
