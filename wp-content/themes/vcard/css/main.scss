@@ -1,0 +1,15 @@
+@import 'variables';
+@import 'mixins';
+@import 'header';
+@import 'footer';
+@import 'single-card'; 
+@import 'front-page';
+@import 'card-grid';
+@import 'layout';
+@import 'forms';
+body {
+    font-family: $font-main;
+    background-color: $color-graphite;
+    color: $color-white;
+    margin: 0;
+}

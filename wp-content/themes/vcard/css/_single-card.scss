@@ -1,0 +1,277 @@
+/* _single-card.scss - עיצוב הכרטיס הדיגיטלי החדש */
+
+// משתנים מקומיים לכרטיס (אם לא נטענו מהראשי)
+$card-yellow: #FFD700;
+$card-dark: #1C1C1C;
+$card-gray: #2C2C2C;
+
+.digital-card-page {
+    background-color: #111; // רקע כללי של הדף - שחור עמוק
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Alef', sans-serif;
+    margin: 0;
+}
+
+.digital-card-wrapper {
+    width: 100%;
+    max-width: 420px; // רוחב של סמארטפון גדול
+    background: $card-dark;
+    min-height: 100vh;
+    box-shadow: 0 0 60px rgba(0,0,0,0.9); // צל עמוק מסביב לכרטיס
+    position: relative;
+    display: flex;
+    flex-direction: column; // כדי שהפוטר ידחף למטה
+    overflow-x: hidden; // מונע גלילה רוחבית
+
+    // --- 1. באנר עליון ---
+    .card-banner {
+        width: 100%;
+        height: 220px; // חובה גובה כדי שיראו את התמונה!
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+        
+        // אפקט כהה על הבאנר כדי שהלוגו יבלוט
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 50%;
+            background: linear-gradient(to top, $card-dark, transparent);
+        }
+    }
+
+    .card-content {
+        padding: 0 25px;
+        text-align: center;
+        flex: 1; // תופס את כל המקום הפנוי כדי לדחוף את הפוטר
+        position: relative;
+        z-index: 10;
+        
+        // --- 2. לוגו - התיקון הגדול ---
+        .card-logo {
+            width: 140px;
+            height: 140px;
+            margin: -70px auto 20px; // עולה 70 פיקסל על הבאנר
+            background: #fff;
+            border-radius: 50%;
+            padding: 5px; // מסגרת לבנה
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain; // שומר על פרופורציות הלוגו בתוך העיגול
+                border-radius: 50%;
+            }
+        }
+
+        // שם ותפקיד
+        .card-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 10px 0 5px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .card-role {
+            font-size: 1.1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+
+        // --- 3. כפתורים מודרניים ---
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); // 3 בשורה
+            gap: 15px;
+            margin-bottom: 40px;
+
+            .action-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                
+                // עיצוב הכפתור
+                background: linear-gradient(145deg, #2a2a2a, #1a1a1a); // גרדיאנט כהה יוקרתי
+                border: 1px solid rgba(255,255,255,0.05);
+                border-bottom: 3px solid transparent; // הכנה לפס צהוב
+                border-radius: 16px;
+                padding: 20px 10px;
+                text-decoration: none;
+                transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                position: relative;
+                overflow: hidden;
+
+                // אייקון
+                .icon-wrap {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                    color: $card-yellow; // האייקון בצהוב
+                    transition: transform 0.3s;
+                    filter: drop-shadow(0 0 5px rgba($card-yellow, 0.3));
+                }
+
+                // טקסט הכפתור
+                .btn-label {
+                    font-size: 0.85rem;
+                    color: #ddd;
+                    font-weight: 500;
+                }
+
+                // אפקט הובר (Hover)
+                &:hover {
+                    transform: translateY(-5px);
+                    background: #333;
+                    border-bottom-color: $card-yellow; // פס צהוב למטה
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.4), 
+                                0 0 15px rgba($card-yellow, 0.1); // זוהר עדין
+
+                    .icon-wrap {
+                        transform: scale(1.1);
+                        color: #fff;
+                    }
+                    
+                    .btn-label { color: #fff; }
+                }
+            }
+        }
+
+        // --- 4. אזור שיתוף ---
+        .share-area {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+
+            h3 { font-size: 1rem; color: #666; margin-bottom: 15px; }
+
+            .share-icons {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+
+                a {
+                    width: 45px; height: 45px;
+                    display: flex;
+                    align-items: center; justify-content: center;
+                    border-radius: 50%;
+                    background: rgba(255,255,255,0.05);
+                    color: #fff;
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                    transition: 0.3s;
+
+                    &:hover {
+                        background: $card-yellow;
+                        color: #000;
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+
+    // --- 5. פוטר / זכויות יוצרים ---
+    .card-footer-credit {
+        margin-top: auto; // דוחף את הפוטר לתחתית
+        padding: 20px;
+        text-align: center;
+        background-color: darken($card-dark, 3%);
+        border-top: 1px solid rgba($card-yellow, 0.2); // פס צהוב עדין מעל הפוטר
+        
+        a {
+            color: $card-yellow; // טקסט צהוב
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            
+            &:hover {
+                color: #fff;
+                text-shadow: 0 0 10px rgba($card-yellow, 0.6);
+            }
+        }
+    }
+}
+
+/* --- תוספת עבור פופאפ אודות --- */
+.vcard-modal {
+    display: none; // מוסתר בהתחלה
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); // רקע כהה מאוד
+    backdrop-filter: blur(8px); // טשטוש הרקע מאחור
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+
+    &.open {
+        display: flex; // ה-JS יהפוך את זה ל-FLEX
+    }
+
+    .modal-content-wrap {
+        background: #1C1C1C;
+        border: 1px solid rgba(255, 215, 0, 0.3); // מסגרת צהובה עדינה
+        width: 90%;
+        max-width: 500px;
+        border-radius: 20px;
+        padding: 40px 30px;
+        position: relative;
+        box-shadow: 0 0 50px rgba(255, 215, 0, 0.15);
+        text-align: right; // או center, תלוי בטעם
+        direction: rtl;
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                color: #FFD700;
+                transform: rotate(90deg);
+            }
+        }
+
+        h2 {
+            color: #FFD700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+
+        .modal-text {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            max-height: 60vh;
+            overflow-y: auto; // גלילה אם הטקסט ארוך מדי
+            
+            p { margin-bottom: 15px; }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

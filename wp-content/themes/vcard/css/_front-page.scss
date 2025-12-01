@@ -1,0 +1,261 @@
+/* _front-page.scss - עיצוב דף הבית (ללא הגריד) */
+
+$color-yellow: #ffd700;
+$c-dark: #111111;
+$c-graphite: #1c1c1c;
+
+.home-section {
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative; // חשוב!
+  z-index: 5;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 40px;
+  border-right: 5px solid $color-yellow;
+
+  &.text-center {
+    border-right: none;
+    text-align: center;
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: $color-yellow;
+      margin: 15px auto 0;
+    }
+  }
+}
+
+/* --- 1. HERO SECTION (מתוקן) --- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh; // דסקטופ = מסך מלא
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+
+  .video-background {
+    position: absolute; // התיקון החשוב ביותר!
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; // מאחור
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), #111);
+      z-index: 2;
+    }
+  }
+
+  .container {
+    z-index: 10; // הטקסט מעל הכל
+    text-align: center;
+    width: 100%;
+  }
+
+  .main-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  }
+
+  .hero-desc {
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #ddd;
+  }
+
+  .mega-btn {
+    display: inline-block;
+    padding: 18px 50px;
+    background: $color-yellow;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba($color-yellow, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+      background: #fff;
+      box-shadow: 0 0 40px rgba($color-yellow, 0.7);
+    }
+
+    i {
+      margin-right: 10px;
+    }
+  }
+}
+
+/* --- 2. BENEFITS SECTION --- */
+.benefits-section {
+  background-color: $c-graphite;
+  color: #fff;
+
+  .benefits-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .benefits-text {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ccc;
+      p {
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+/* --- 3. CTA SECTION --- */
+.cta-section {
+  background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%);
+  text-align: center;
+
+  .cta-box {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 60px;
+    border-radius: 20px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 3px;
+      background: $color-yellow;
+      box-shadow: 0 0 15px $color-yellow;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .outline-btn {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 2px solid $color-yellow;
+      color: $color-yellow;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: 0.3s;
+
+      &:hover {
+        background: $color-yellow;
+        color: #000;
+        box-shadow: 0 0 30px rgba($color-yellow, 0.5);
+      }
+    }
+  }
+}
+
+/* --- התאמות רספונסיביות למובייל --- */
+@media (max-width: 768px) {
+  .home-section {
+    padding: 60px 0;
+  }
+
+  .hero-section {
+    height: 35vh !important;
+    padding-top: 120px;
+    padding-bottom: 60px;
+
+    .main-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 15px;
+    }
+    .hero-desc {
+      font-size: 1.1rem;
+      padding: 0 10px;
+      margin-bottom: 30px;
+    }
+    .mega-btn {
+      width: 80%;
+      padding: 12px 20px;
+      font-size: 1rem;
+    }
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    border-right-width: 3px;
+    margin-bottom: 30px;
+    padding: 0px !important;
+
+    &.text-center::after {
+      width: 40px;
+      margin-top: 10px;
+    }
+  }
+
+  .cta-section {
+    .cta-box {
+      padding: 40px 20px;
+      h2 {
+        font-size: 1.8rem;
+      }
+      p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+      }
+      .outline-btn {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+      }
+    }
+  }
+}

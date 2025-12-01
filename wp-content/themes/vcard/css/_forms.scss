@@ -1,0 +1,128 @@
+/* _forms.scss - עיצוב טפסים מבוסס משתנים גלובליים */
+
+.modern-form-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    direction: rtl;
+
+    .form-row {
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    // --- תוויות (Labels) ---
+    label {
+        display: block;
+        margin-bottom: 8px;
+        // שימוש בלבן עם שקיפות כדי ליצור אפור בהיר וקריא על הרקע הכהה
+        color: rgba($color-white, 0.8); 
+        font-size: 0.95rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    // --- שדות קלט ---
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        // רקע שקוף מבוסס לבן
+        background-color: rgba($color-white, 0.05); 
+        // גבול עדין מבוסס לבן
+        border: 1px solid rgba($color-white, 0.1); 
+        border-radius: 12px;
+        padding: 15px 20px;
+        font-family: 'Alef', sans-serif;
+        color: $color-white; // טקסט בלבן נקי
+        font-size: 1rem;
+        outline: none;
+        transition: all 0.3s ease;
+        box-sizing: border-box;
+
+        &::placeholder {
+            color: rgba($color-white, 0.3); // פלייסהולדר עמום
+            font-size: 0.9rem;
+        }
+
+        // מצב פוקוס
+        &:focus {
+            background-color: rgba($color-white, 0.08);
+            border-color: $color-yellow; // הצהוב שלך!
+            box-shadow: 0 0 15px rgba($color-yellow, 0.2); // הילה צהובה
+            transform: translateY(-2px);
+        }
+    }
+
+    // --- כפתור שליחה ---
+    .submit-row {
+        text-align: center;
+        margin-top: 10px;
+
+        input[type="submit"] {
+            background-color: $color-yellow;
+            color: $color-graphite; // טקסט כהה על רקע צהוב לקריאות מקסימלית
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 12px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+            &:hover {
+                background-color: $color-white; // הופך ללבן
+                color: $color-graphite; // הטקסט נשאר כהה
+                transform: scale(1.05);
+                box-shadow: 0 0 25px rgba($color-yellow, 0.6); // זוהר צהוב חזק מסביב ללבן
+            }
+            
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+    
+    // --- ספינר טעינה ---
+    .wpcf7-spinner {
+        margin: 10px auto 0;
+        background-color: $color-yellow;
+    }
+
+    // --- הודעות מערכת ---
+    .wpcf7-response-output {
+        border: none !important;
+        border-radius: 10px;
+        padding: 15px !important;
+        margin-top: 20px !important;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    // במקרה של הצלחה/כישלון - נשאיר צבעים סטנדרטיים (ירוק/אדום) כי הם לא במותג
+    // אבל נשתמש בלבן לטקסט אם צריך
+    form.sent .wpcf7-response-output {
+        background-color: rgba(46, 204, 113, 0.2);
+        color: #2ecc71; 
+        border: 1px solid #2ecc71 !important;
+    }
+
+    form.invalid .wpcf7-response-output,
+    form.failed .wpcf7-response-output {
+        background-color: rgba(231, 76, 60, 0.2);
+        color: #e74c3c;
+        border: 1px solid #e74c3c !important;
+    }
+
+    .wpcf7-not-valid-tip {
+        color: #e74c3c;
+        font-size: 0.8rem;
+        margin-top: 5px;
+        display: block;
+    }
+}

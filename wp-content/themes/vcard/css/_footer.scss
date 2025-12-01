@@ -1,0 +1,143 @@
+/* _footer.scss - עיצוב הפוטר התחתון */
+
+.site-footer {
+    background-color: darken($color-graphite, 3%); // מעט כהה יותר מהרקע הראשי
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 80px;
+    margin-top: auto;
+    font-size: 0.95rem;
+    color: #ccc;
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 1.5fr; // חלוקה לא שוויונית לטובת הטופס
+        gap: 50px;
+        padding-bottom: 60px;
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr; // עמודה אחת במובייל
+            gap: 40px;
+        }
+
+        h3, h4 {
+            color: $color-white;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        h3 { font-size: 1.8rem; .dot { color: $color-yellow; } }
+    }
+
+    // עמודה 1: מיתוג ורשתות
+    .brand-col {
+        p { line-height: 1.6; margin-bottom: 25px; }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: rgba(255,255,255,0.05);
+                color: $color-white;
+                border-radius: 50%;
+                text-decoration: none;
+                transition: all 0.3s;
+                border: 1px solid transparent;
+
+                &:hover {
+                    background: transparent;
+                    border-color: $color-yellow;
+                    color: $color-yellow;
+                    transform: translateY(-3px);
+                }
+            }
+        }
+    }
+
+    // עמודה 2: קישורים
+    .links-col {
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin-bottom: 12px;
+                a {
+                    color: #aaa;
+                    text-decoration: none;
+                    transition: 0.3s;
+                    &:hover { color: $color-yellow; padding-right: 5px; }
+                }
+            }
+        }
+    }
+
+    // עמודה 3: טופס יצירת קשר (CF7 Styling)
+    .contact-col {
+        .cta-text { margin-bottom: 20px; font-size: 0.9rem; }
+
+        // עיצוב שדות הטופס של CF7
+        .wpcf7-form-control-wrap {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: $color-white;
+            font-family: $font-main;
+            transition: 0.3s;
+
+            &:focus {
+                outline: none;
+                border-color: $color-yellow;
+                background: rgba(255,255,255,0.05);
+            }
+            
+            &::placeholder { color: rgba(255,255,255,0.3); }
+        }
+
+        // כפתור שליחה
+        input[type="submit"] {
+            background: $color-yellow;
+            color: $color-graphite;
+            font-weight: 700;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            margin-top: 10px;
+
+            &:hover {
+                background: #fff;
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba($color-yellow, 0.3);
+            }
+        }
+    }
+
+    // חלק תחתון - זכויות יוצרים
+    .footer-bottom {
+        text-align: center;
+        padding: 20px 0;
+        background: rgba(0,0,0,0.2);
+        font-size: 0.85rem;
+        color: rgba(255,255,255,0.4);
+    }
+}

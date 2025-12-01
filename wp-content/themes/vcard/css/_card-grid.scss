@@ -1,0 +1,187 @@
+/* _card-grid.scss - עיצוב כרטיס סופי (לוגו גדול + תיקון גלישה) */
+
+$color-yellow: #FFD700;
+$c-black: #000000;
+
+.showcase-section {
+    background-color: $c-black;
+    padding: 100px 0;
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+}
+
+.cards-grid-display {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    
+    @media (max-width: 992px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 600px) { 
+        grid-template-columns: 1fr; 
+        gap: 40px;
+        padding: 0 15px;
+    }
+}
+
+/* --- עיצוב הכרטיס "הקטלני" --- */
+.lethal-card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 440px; // הגבהתי מעט כדי שיהיה מקום ללוגו הגדול
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255,255,255,0.1);
+    
+    // תמונת רקע
+    .card-image {
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        background-position: center;
+        transition: transform 0.6s ease;
+    }
+    
+    // שכבת כהות (גרדיאנט)
+    .card-overlay {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        // גרדיאנט חזק יותר למטה כדי שהטקסט יהיה קריא
+        background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 50%, transparent 100%);
+        transition: 0.4s;
+    }
+    
+    // קונטיינר הפרטים - כולל התיקון לגלישה
+    .card-details {
+        position: absolute;
+        bottom: 0; 
+        left: 0; 
+        width: 100%;
+        
+        // --- התיקון החשוב: מונע מהפדינג להרחיב את האלמנט ---
+        box-sizing: border-box; 
+        padding: 30px 20px;
+        
+        z-index: 2;
+        
+        // Flexbox למרכוז מושלם
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; // מיישר אופקית לאמצע
+        justify-content: flex-end; // מצמיד לתחתית
+        text-align: center; 
+        
+        // --- הלוגו (מוגדל משמעותית) ---
+        .mini-logo {
+            width: 100px;  // הגדלנו מ-70 ל-100
+            height: 100px; // שומר על פרופורציה ריבועית
+            border-radius: 50%;
+            background: #fff; // רקע לבן בולט
+            padding: 8px; 
+            margin-bottom: 20px;
+            object-fit: contain;
+            border: 3px solid rgba(255,255,255,0.8);
+            
+            // מצב התחלתי
+            opacity: 0.7;          
+            transform: scale(0.9); 
+            filter: grayscale(100%); 
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+        }
+        
+        h3 { 
+            margin: 0; 
+            color: #fff; 
+            font-size: 1.7rem; // טיפה הגדלתי גם את הכותרת
+            font-weight: 700;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+            transform: translateY(10px);
+            transition: 0.4s;
+        }
+        
+        p { 
+            margin: 8px 0 0; 
+            color: $color-yellow; 
+            font-size: 1rem; 
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.8;
+            transform: translateY(10px);
+            transition: 0.4s 0.1s;
+        }
+        
+        .view-btn {
+            margin-top: 25px;
+            padding: 12px 35px;
+            border: 1px solid $color-yellow;
+            border-radius: 50px;
+            color: $color-yellow;
+            font-size: 0.95rem;
+            font-weight: bold;
+            background: transparent;
+            opacity: 0; // מוסתר בהתחלה
+            transform: translateY(20px); 
+            transition: 0.4s 0.2s; 
+        }
+    }
+    
+    // --- אפקט HOVER ---
+    &:hover {
+        transform: translateY(-8px); 
+        box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        border-color: $color-yellow; 
+        
+        .card-image { transform: scale(1.1); } 
+        
+        .card-details {
+            // טיפול בלוגו בהובר
+            .mini-logo { 
+                opacity: 1;             
+                transform: scale(1.1); // גדל עוד קצת ל-110px
+                filter: grayscale(0%);  
+                border-color: $color-yellow; 
+                box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); // הילה חזקה
+            }
+            
+            h3, p { transform: translateY(0); opacity: 1; }
+            
+            .view-btn { 
+                opacity: 1; 
+                transform: translateY(0);
+                background: $color-yellow;
+                color: #000;
+                box-shadow: 0 0 20px rgba($color-yellow, 0.5);
+            }
+        }
+    }
+
+    // --- התאמות מובייל ---
+    @media (max-width: 768px) {
+        height: 400px;
+        
+        .card-details {
+            padding: 20px 15px; // ריווח מותאם למובייל
+            
+            .mini-logo {
+                width: 90px; // טיפה יותר קטן במובייל אבל עדיין גדול
+                height: 90px;
+                opacity: 1; 
+                transform: scale(1);
+                filter: grayscale(0%);
+            }
+            
+            h3, p { transform: translateY(0); }
+            
+            .view-btn {
+                opacity: 1;
+                transform: translateY(0);
+                background: rgba($color-yellow, 0.15);
+                border-color: $color-yellow;
+            }
+        }
+    }
+}
