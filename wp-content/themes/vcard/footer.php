@@ -18,7 +18,7 @@
             wp_nav_menu(array(
                 'theme_location' => 'footer_menu',
                 'container'      => false,
-                'menu_class'     => 'footer-nav-list', // קלאס ייחודי לפוטר
+                'menu_class'     => 'footer-nav-list', // קלאס ייחודי לפוטר 
                 'depth'          => 1 // מציג רק רמה אחת (בלי תתי תפריטים בפוטר)
             ));
             ?>
