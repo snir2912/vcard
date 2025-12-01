@@ -9,7 +9,7 @@ $bg_color       = get_field('card_bg_color') ?: '#111111';
 $text_color     = get_field('card_text_color') ?: '#FFFFFF';
 $btn_bg_color   = get_field('btn_bg_color');
 $btn_text_color = get_field('btn_text_color') ?: '#FFFFFF'; 
-$icon_color     = get_field('icon_color') ?: '#FFD700'; // צבע האייקון הנבחר
+$icon_color     = get_field('icon_color') ?: '#FFD700';
 
 $banner = get_field('card_banner');
 $logo   = get_field('card_logo');
