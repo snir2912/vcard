@@ -114,6 +114,20 @@ $current_url = get_permalink();
                     $extra_class = ''; 
 
                     switch ($type) {
+                        case 'instagram':
+                            $final_url = '#'; 
+                            $target = '_self';
+                            $extra_class = 'js-open-about'; 
+                            if(empty($icon_class)) $icon_class = 'fa-brands fa-instagram';
+                            break;
+                            
+                        case 'facebook':
+                            $final_url = '#'; 
+                            $target = '_self';
+                            $extra_class = 'js-open-about'; 
+                            if(empty($icon_class)) $icon_class = 'fa-brands fa-facebook-f';
+                            break;
+
                         case 'popup':
                             $final_url = '#'; 
                             $target = '_self';
