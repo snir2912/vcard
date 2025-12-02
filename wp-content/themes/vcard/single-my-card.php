@@ -115,13 +115,13 @@ $current_url = get_permalink();
 
                     switch ($type) {
                         case 'instagram':
-                            $final_url = '#'; 
+                            $final_url = $input_val;; 
                             $target = '_self'; 
                             if(empty($icon_class)) $icon_class = 'fa-brands fa-instagram';
                             break;
                             
                         case 'facebook':
-                            $final_url = '#'; 
+                            $final_url = $input_val;; 
                             $target = '_self'; 
                             if(empty($icon_class)) $icon_class = 'fa-brands fa-facebook-f';
                             break;
