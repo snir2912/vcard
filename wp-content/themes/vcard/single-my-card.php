@@ -6,7 +6,7 @@
 
 // --- 1. שליפת שדות ACF ומשתנים ---
 $bg_color       = get_field('card_bg_color') ?: '#111111'; // צבע הרקע
-$text_color     = get_field('card_text_color') ?: '#FFFFFF'; // צבע הטקסט (שם, סלוגן, קרדיט)
+$text_color     = get_field('card_text_color') ?: '#FFFFFF'; // צבע הטקסט (שם, סלוגן)
 $btn_bg_color   = get_field('btn_bg_color') ?: '#1C1C1C'; // רקע כפתור
 $icon_color     = get_field('icon_color') ?: '#FFD700'; // צבע אייקון וטקסט כפתור
 
@@ -45,17 +45,16 @@ $current_url = get_permalink();
             padding-bottom: 30px;
         }
         
-        /* 2. צבעי טקסט (שם, סלוגן, קרדיט) */
+        /* 2. צבעי טקסט (שם, סלוגן) */
         .card-name, 
-        .card-role, 
-        .card-footer-credit a {
+        .card-role {
             color: <?php echo $text_color; ?> !important;
         }
         
         /* קו מפריד (אם קיים) או בורדר עליון לשיתוף בצבע הטקסט */
         .share-area {
             border-top: 1px solid <?php echo $text_color; ?>;
-            opacity: 0.8; /* שיהיה מעט עדין יותר */
+            opacity: 0.8;
         }
         .share-area h3 {
              color: <?php echo $text_color; ?> !important;
@@ -64,8 +63,10 @@ $current_url = get_permalink();
         /* 3. כפתורים ראשיים */
         .digital-card-wrapper .action-btn { 
             background-color: <?php echo $btn_bg_color; ?> !important; 
-            background: <?php echo $btn_bg_color; ?> !important; /* דריסה לגרדיאנט אם היה */
+            background: <?php echo $btn_bg_color; ?> !important;
             border: 1px solid rgba(255,255,255,0.1);
+            /* חובה להגדיר בורדר תחתון שקוף או בצבע בסיס כדי שהמעבר יעבוד */
+            border-bottom: 4px solid transparent; 
         }
         
         /* צבע הטקסט והאייקון בכפתור */
@@ -75,14 +76,15 @@ $current_url = get_permalink();
             color: <?php echo $icon_color; ?> !important; 
         }
         
-        /* הובר על כפתורים ראשיים (אפקט קטן) */
+        /* --- תיקון: הובר על כפתורים --- */
         .digital-card-wrapper .action-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border-color: <?php echo $icon_color; ?>;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            /* הבורדר התחתון מקבל את צבע האייקון! */
+            border-bottom-color: <?php echo $icon_color; ?> !important; 
         }
         
-        /* 4. כפתורי שיתוף - צבעים רגילים (כמו הכפתורים הראשיים) */
+        /* 4. כפתורי שיתוף */
         .digital-card-wrapper .share-icons a {
              background-color: <?php echo $btn_bg_color; ?> !important;
              color: <?php echo $icon_color; ?> !important;
@@ -90,14 +92,28 @@ $current_url = get_permalink();
              transition: all 0.3s ease;
         }
 
-        /* 5. כפתורי שיתוף - הובר (היפוך צבעים) */
         .digital-card-wrapper .share-icons a:hover {
-            background-color: <?php echo $icon_color; ?> !important; /* הרקע נהיה צבע האייקון */
-            color: <?php echo $btn_bg_color; ?> !important; /* האייקון נהיה צבע הרקע */
+            background-color: <?php echo $icon_color; ?> !important; 
+            color: <?php echo $btn_bg_color; ?> !important; 
             transform: rotate(360deg);
         }
 
-        /* התאמות נוספות למודל אודות */
+        /* --- 5. תיקון: פוטר קרדיט (היפוך צבעים) --- */
+        .card-footer-credit {
+            /* רקע הפוטר = צבע הטקסט של האתר */
+            background-color: <?php echo $text_color; ?> !important;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .card-footer-credit a {
+            /* צבע הלינק בפוטר = צבע הרקע של האתר */
+            color: <?php echo $bg_color; ?> !important;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* התאמות למודל אודות */
         .vcard-modal .close-modal:hover,
         .vcard-modal h2 { 
             color: <?php echo $icon_color; ?> !important; 
@@ -222,7 +238,9 @@ $current_url = get_permalink();
         <div class="card-footer-credit">
             <a href="<?php echo home_url(); ?>">נוצר ע"י VCARD</a>
         </div>
-    </div> </div>
+    </div> 
+
+</div>
 
 <div id="aboutModal" class="vcard-modal">
     <div class="modal-content-wrap">
