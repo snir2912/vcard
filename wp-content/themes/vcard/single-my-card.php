@@ -114,15 +114,21 @@ $current_url = get_permalink();
                     $extra_class = ''; 
 
                     switch ($type) {
+                        case 'google':
+                            $final_url = $input_val;; 
+                            $target = '_blank'; 
+                            if(empty($icon_class)) $icon_class = 'fa-brands fa-google';
+                            break;
+                            
                         case 'instagram':
                             $final_url = $input_val;; 
-                            $target = '_self'; 
+                            $target = '_blank'; 
                             if(empty($icon_class)) $icon_class = 'fa-brands fa-instagram';
                             break;
                             
                         case 'facebook':
                             $final_url = $input_val;; 
-                            $target = '_self'; 
+                            $target = '_blank'; 
                             if(empty($icon_class)) $icon_class = 'fa-brands fa-facebook-f';
                             break;
 
