@@ -26,10 +26,10 @@ define( 'WP_CACHE', true );
 define( 'DB_NAME', 'local' );
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'u588984589_3xtkj' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'root' );
+define( 'DB_PASSWORD', '5!8.Qx8MVApPNRp' );
 
 /** Database hostname */
 define( 'DB_HOST', 'localhost' );
