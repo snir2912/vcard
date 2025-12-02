@@ -6,9 +6,9 @@
 
 // --- 1. שליפת שדות ACF ומשתנים ---
 $bg_color       = get_field('card_bg_color') ?: '#111111'; // צבע הרקע
-$text_color     = get_field('card_text_color') ?: '#FFFFFF'; // צבע הטקסט (שם, סלוגן)
+$text_color     = get_field('card_text_color') ?: '#FFFFFF'; // צבע הטקסט הראשי
 $btn_bg_color   = get_field('btn_bg_color') ?: '#1C1C1C'; // רקע כפתור
-$icon_color     = get_field('icon_color') ?: '#FFD700'; // צבע אייקון וטקסט כפתור
+$icon_color     = get_field('icon_color') ?: '#FFD700'; // צבע אייקון
 
 $banner = get_field('card_banner');
 $logo   = get_field('card_logo');
@@ -30,7 +30,7 @@ $current_url = get_permalink();
     <?php wp_head(); ?> 
     
     <style>
-        /* הגדרת רקע כללי לדף שיתאים לצבע הכרטיס */
+        /* הגדרת רקע כללי לדף */
         body.digital-card-page { 
             background-color: <?php echo $bg_color; ?>; 
             margin: 0;
@@ -51,7 +51,7 @@ $current_url = get_permalink();
             color: <?php echo $text_color; ?> !important;
         }
         
-        /* קו מפריד (אם קיים) או בורדר עליון לשיתוף בצבע הטקסט */
+        /* קו מפריד וכותרת שיתוף */
         .share-area {
             border-top: 1px solid <?php echo $text_color; ?>;
             opacity: 0.8;
@@ -65,7 +65,6 @@ $current_url = get_permalink();
             background-color: <?php echo $btn_bg_color; ?> !important; 
             background: <?php echo $btn_bg_color; ?> !important;
             border: 1px solid rgba(255,255,255,0.1);
-            /* חובה להגדיר בורדר תחתון שקוף או בצבע בסיס כדי שהמעבר יעבוד */
             border-bottom: 4px solid transparent; 
         }
         
@@ -76,11 +75,10 @@ $current_url = get_permalink();
             color: <?php echo $icon_color; ?> !important; 
         }
         
-        /* --- תיקון: הובר על כפתורים --- */
+        /* הובר על כפתורים - בורדר תחתון בצבע האייקון */
         .digital-card-wrapper .action-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            /* הבורדר התחתון מקבל את צבע האייקון! */
             border-bottom-color: <?php echo $icon_color; ?> !important; 
         }
         
@@ -98,25 +96,45 @@ $current_url = get_permalink();
             transform: rotate(360deg);
         }
 
-        /* --- 5. תיקון: פוטר קרדיט (היפוך צבעים) --- */
+        /* 5. פוטר קרדיט (היפוך צבעים) */
         .card-footer-credit {
-            /* רקע הפוטר = צבע הטקסט של האתר */
-            background-color: <?php echo $text_color; ?> !important;
+            background-color: <?php echo $text_color; ?> !important; /* רקע = צבע טקסט ראשי */
             padding: 15px;
             text-align: center;
         }
         
         .card-footer-credit a {
-            /* צבע הלינק בפוטר = צבע הרקע של האתר */
-            color: <?php echo $bg_color; ?> !important;
+            color: <?php echo $bg_color; ?> !important; /* טקסט = צבע רקע ראשי */
             font-weight: bold;
             text-decoration: none;
         }
 
-        /* התאמות למודל אודות */
-        .vcard-modal .close-modal:hover,
-        .vcard-modal h2 { 
-            color: <?php echo $icon_color; ?> !important; 
+        /* --- 6. עיצוב הפופאפ (החלק החדש) --- */
+        
+        /* רקע הפופאפ והמסגרת */
+        .vcard-modal .modal-content-wrap {
+            background-color: <?php echo $bg_color; ?> !important; /* רקע כמו באתר */
+            border: 1px solid <?php echo $text_color; ?> !important; /* מסגרת בצבע הטקסט */
+            /* הצללה בצבע הטקסט עם שקיפות */
+            box-shadow: 0 0 30px <?php echo $text_color; ?>4D !important; 
+        }
+
+        /* כותרת הפופאפ וכפתור סגירה */
+        .vcard-modal h2, 
+        .vcard-modal .close-modal {
+            color: <?php echo $text_color; ?> !important;
+            border-bottom: 1px solid <?php echo $text_color; ?>33; /* קו עדין מתחת לכותרת */
+        }
+
+        /* טקסט הפופאפ */
+        .vcard-modal .modal-text {
+            color: <?php echo $text_color; ?> !important;
+        }
+        
+        /* סרגל גלילה בפופאפ (אם הטקסט ארוך) מותאם לצבעים */
+        .vcard-modal .modal-text::-webkit-scrollbar-thumb {
+            background-color: <?php echo $text_color; ?>; 
+            border-radius: 4px;
         }
     </style>
 </head>
