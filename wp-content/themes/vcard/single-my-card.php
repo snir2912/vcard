@@ -5,11 +5,10 @@
  */
 
 // --- 1. שליפת שדות ACF ומשתנים ---
-$bg_color       = get_field('card_bg_color') ?: '#111111';
-$text_color     = get_field('card_text_color') ?: '#FFFFFF';
-$btn_bg_color   = get_field('btn_bg_color');
-$btn_text_color = get_field('btn_text_color') ?: '#FFFFFF'; 
-$icon_color     = get_field('icon_color') ?: '#FFD700';
+$bg_color       = get_field('card_bg_color') ?: '#111111'; // צבע הרקע
+$text_color     = get_field('card_text_color') ?: '#FFFFFF'; // צבע הטקסט (שם, סלוגן, קרדיט)
+$btn_bg_color   = get_field('btn_bg_color') ?: '#1C1C1C'; // רקע כפתור
+$icon_color     = get_field('icon_color') ?: '#FFD700'; // צבע אייקון וטקסט כפתור
 
 $banner = get_field('card_banner');
 $logo   = get_field('card_logo');
@@ -31,45 +30,74 @@ $current_url = get_permalink();
     <?php wp_head(); ?> 
     
     <style>
+        /* הגדרת רקע כללי לדף שיתאים לצבע הכרטיס */
         body.digital-card-page { 
             background-color: <?php echo $bg_color; ?>; 
-            color: <?php echo $text_color; ?>; 
+            margin: 0;
+            font-family: 'Alef', sans-serif;
+        }
+
+        /* 1. רקע לאזור התוכן */
+        .digital-card-wrapper .card-content {
+            background-color: <?php echo $bg_color; ?>;
+            color: <?php echo $text_color; ?>;
+            position: relative;
+            padding-bottom: 30px;
         }
         
-        /* --- כפתורים ראשיים --- */
+        /* 2. צבעי טקסט (שם, סלוגן, קרדיט) */
+        .card-name, 
+        .card-role, 
+        .card-footer-credit a {
+            color: <?php echo $text_color; ?> !important;
+        }
+        
+        /* קו מפריד (אם קיים) או בורדר עליון לשיתוף בצבע הטקסט */
+        .share-area {
+            border-top: 1px solid <?php echo $text_color; ?>;
+            opacity: 0.8; /* שיהיה מעט עדין יותר */
+        }
+        .share-area h3 {
+             color: <?php echo $text_color; ?> !important;
+        }
+
+        /* 3. כפתורים ראשיים */
         .digital-card-wrapper .action-btn { 
-            background: linear-gradient(145deg, <?php echo $btn_bg_color; ?>, #000); 
-            color: <?php echo $btn_text_color; ?>;
+            background-color: <?php echo $btn_bg_color; ?> !important; 
+            background: <?php echo $btn_bg_color; ?> !important; /* דריסה לגרדיאנט אם היה */
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        /* צבע האייקון הרגיל */
-        .digital-card-wrapper .action-btn .icon-wrap { 
+        /* צבע הטקסט והאייקון בכפתור */
+        .digital-card-wrapper .action-btn .btn-label,
+        .digital-card-wrapper .action-btn .icon-wrap,
+        .digital-card-wrapper .action-btn i { 
             color: <?php echo $icon_color; ?> !important; 
         }
         
-        /* הוקוס פוקוס: שינוי צבע פס תחתון וגלאו לפי צבע האייקון */
+        /* הובר על כפתורים ראשיים (אפקט קטן) */
         .digital-card-wrapper .action-btn:hover {
-            border-bottom-color: <?php echo $icon_color; ?> !important;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 15px <?php echo $icon_color; ?>40 !important; /* ה-40 מוסיף שקיפות לצבע */
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-color: <?php echo $icon_color; ?>;
         }
         
-        /* --- כפתורי שיתוף --- */
-        /* צבע רגיל */
+        /* 4. כפתורי שיתוף - צבעים רגילים (כמו הכפתורים הראשיים) */
         .digital-card-wrapper .share-icons a {
-             color: #fff;
-             background: rgba(255,255,255,0.05);
+             background-color: <?php echo $btn_bg_color; ?> !important;
+             color: <?php echo $icon_color; ?> !important;
+             border: 1px solid rgba(255,255,255,0.05);
+             transition: all 0.3s ease;
         }
 
-        /* הובר על כפתורי שיתוף - רקע לבן ואייקון בצבע הנבחר */
+        /* 5. כפתורי שיתוף - הובר (היפוך צבעים) */
         .digital-card-wrapper .share-icons a:hover {
-            background-color: #ffffff !important; /* רקע לבן */
-            color: <?php echo $icon_color; ?> !important; /* אייקון בצבע המותאם */
-            transform: translateY(-3px) rotate(360deg);
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+            background-color: <?php echo $icon_color; ?> !important; /* הרקע נהיה צבע האייקון */
+            color: <?php echo $btn_bg_color; ?> !important; /* האייקון נהיה צבע הרקע */
+            transform: rotate(360deg);
         }
 
-        /* --- צבעים נוספים --- */
-        .card-footer-credit a,
+        /* התאמות נוספות למודל אודות */
         .vcard-modal .close-modal:hover,
         .vcard-modal h2 { 
             color: <?php echo $icon_color; ?> !important; 
@@ -190,13 +218,11 @@ $current_url = get_permalink();
                 <a href="#" class="copy-link-btn" data-link="<?php echo $current_url; ?>"><i class="fa-solid fa-link"></i></a>
             </div>
         </div>
-    </div>
 
-    <div class="card-footer-credit">
-        <a href="<?php echo home_url(); ?>">נוצר ע"י VCARD</a>
-    </div>
-
-</div>
+        <div class="card-footer-credit">
+            <a href="<?php echo home_url(); ?>">נוצר ע"י VCARD</a>
+        </div>
+    </div> </div>
 
 <div id="aboutModal" class="vcard-modal">
     <div class="modal-content-wrap">
