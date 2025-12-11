@@ -29,7 +29,7 @@
             <p class="cta-text">רוצים כרטיס משלכם? השאירו פרטים ונחזור אליכם.</p>
 
             <div class="footer-form-wrapper">
-                <?php echo do_shortcode('[contact-form-7 id="9d263e6" title="cf"]'); ?>
+                <?php echo do_shortcode('[contact-form-7 id="3d7e8bd" title="contact form"]'); ?>
             </div>
         </div>
     </div>
