@@ -47,9 +47,23 @@ function register_my_card_cpt() {
 }
 add_action('init', 'register_my_card_cpt');
 
-// תמיכה ב-Title Tag ו-Thumbnails
-add_theme_support('title-tag');
-add_theme_support('post-thumbnails');
+// --- הוספת תמיכה בפיצ'רים של התבנית (כולל לוגו!) ---
+function vcard_theme_setup() {
+    // כותרת עמוד דינמית
+    add_theme_support('title-tag');
+    
+    // תמונות ממוזערות
+    add_theme_support('post-thumbnails');
+
+    // >> הנה הקסם: תמיכה בלוגו מותאם אישית <<
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 400,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+}
+add_action('after_setup_theme', 'vcard_theme_setup');
 
 // רישום תפריטי ניווט
 function vcard_register_menus() {

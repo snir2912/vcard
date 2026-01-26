@@ -35,11 +35,21 @@
 
     <header class="site-header">
         <div class="container header-grid">
-            <div class="site-logo">
-                <a href="<?php echo home_url(); ?>">
-                    <span class="logo-text">VCARD<span class="dot">.</span></span>
-                </a>
-            </div>
+<div class="site-logo">
+    <?php 
+    if ( has_custom_logo() ) {
+        // אם הוגדר לוגו בתבנית - הצג אותו
+        the_custom_logo();
+    } else {
+        // אם אין לוגו - הצג טקסט רגיל
+        ?>
+        <a href="<?php echo home_url(); ?>">
+            <?php bloginfo('name'); ?><span class="dot">.</span>
+        </a>
+        <?php
+    }
+    ?>
+</div>
 
             <div class="header-tools">
                 <button class="search-trigger" aria-label="חיפוש">

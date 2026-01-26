@@ -36,6 +36,11 @@
   line-height: 0;
   margin-right: 2px;
 }
+.site-header .site-logo img.custom-logo {
+  max-height: 50px;
+  width: auto;
+  display: block;
+}
 .site-header .header-tools {
   display: flex;
   align-items: center;

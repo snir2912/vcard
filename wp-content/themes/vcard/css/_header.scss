@@ -41,6 +41,11 @@
                 margin-right: 2px;
             }
         }
+        img.custom-logo {
+        max-height: 50px; // שנה לפי הגובה הרצוי
+        width: auto;
+        display: block;
+    }
     }
 
     // --- צד שמאל: כלים (חיפוש + המבורגר) ---
