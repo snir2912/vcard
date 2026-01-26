@@ -140,4 +140,27 @@
         font-size: 0.85rem;
         color: rgba(255,255,255,0.4);
     }
+
+    /* עדכון לוגו בפוטר */
+.footer-col.brand-col {
+    .footer-logo {
+        margin-bottom: 20px;
+
+        // הגבלת רוחב הלוגו כדי שלא ישתלט
+        img, .custom-logo-link img {
+            max-width: 150px; // שנה לפי הגודל שאתה רוצה
+            height: auto;
+            display: block;
+        }
+
+        // אם אין לוגו ומוצג טקסט
+        h3 {
+            font-size: 2rem;
+            color: #fff;
+            margin: 0;
+            
+            .dot { color: $color-yellow; } // שימוש במשתנה הצהוב שלך
+        }
+    }
+}
 }

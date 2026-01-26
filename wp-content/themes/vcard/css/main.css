@@ -236,6 +236,7 @@
   margin-top: auto;
   font-size: 0.95rem;
   color: #ccc;
+  /* עדכון לוגו בפוטר */
 }
 .site-footer .footer-grid {
   display: grid;
@@ -366,6 +367,22 @@
   background: rgba(0, 0, 0, 0.2);
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.4);
+}
+.site-footer .footer-col.brand-col .footer-logo {
+  margin-bottom: 20px;
+}
+.site-footer .footer-col.brand-col .footer-logo img, .site-footer .footer-col.brand-col .footer-logo .custom-logo-link img {
+  max-width: 150px;
+  height: auto;
+  display: block;
+}
+.site-footer .footer-col.brand-col .footer-logo h3 {
+  font-size: 2rem;
+  color: #fff;
+  margin: 0;
+}
+.site-footer .footer-col.brand-col .footer-logo h3 .dot {
+  color: #FFD700;
 }
 
 /* _single-card.scss - עיצוב הכרטיס הדיגיטלי החדש */

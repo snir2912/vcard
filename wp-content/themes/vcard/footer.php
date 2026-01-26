@@ -3,7 +3,20 @@
     <div class="container footer-grid">
 
         <div class="footer-col brand-col">
-            <h3>VCARD<span class="dot">.</span></h3>
+            <div class="footer-logo">
+                <?php 
+                if ( has_custom_logo() ) {
+                    // אם הועלה לוגו - הצג אותו
+                    the_custom_logo();
+                } else {
+                    // אם אין לוגו - הצג את הטקסט הרגיל
+                    ?>
+                    <h3>VCARD<span class="dot">.</span></h3>
+                    <?php
+                }
+                ?>
+            </div>
+            
             <p>הפלטפורמה המתקדמת ביותר לכרטיסי ביקור דיגיטליים. הצטרפו למהפכה הדיגיטלית והציגו את העסק שלכם בסטייל.</p>
             <div class="social-links">
                 <a href="#"><i class="dashicons dashicons-facebook"></i></a>
@@ -14,13 +27,13 @@
 
         <div class="footer-col links-col">
             <h4>ניווט מהיר</h4>
-            <?php
+            <?php 
             wp_nav_menu(array(
                 'theme_location' => 'footer_menu',
                 'container'      => false,
-                'menu_class'     => 'footer-nav-list', // קלאס ייחודי לפוטר 
-                'depth'          => 1 // מציג רק רמה אחת (בלי תתי תפריטים בפוטר) 
-            ));
+                'menu_class'     => 'footer-nav-list', 
+                'depth'          => 1 
+            )); 
             ?>
         </div>
 
@@ -41,5 +54,4 @@
 
 <?php wp_footer(); ?>
 </body>
-
 </html>
