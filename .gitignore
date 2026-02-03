@@ -1,0 +1,20 @@
+# WordPress Core
+wp-config.php
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+
+# Node modules (if you use tools like Tailwind or Vite)
+node_modules/
+npm-debug.log
+
+# Log files
+*.log
