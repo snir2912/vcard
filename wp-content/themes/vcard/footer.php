@@ -50,6 +50,7 @@
     <div class="footer-bottom">
         <p>&copy; <?php echo date('Y'); ?> כל הזכויות שמורות ל-VCARD.</p>
     </div>
+    dafdsgfdsfgsfd
 </footer>
 
 <?php wp_footer(); ?>
