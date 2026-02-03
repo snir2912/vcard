@@ -1,20 +1,20 @@
-# WordPress Core
+# Git & IDE
+.vscode/
+.git/
+
+# WordPress Core (לא נרצה לגבות את כל הליבה בדרך כלל)
+wp-admin/
+wp-includes/
 wp-config.php
+index.php
+license.txt
+readme.html
+wp-*.php
+
+# Media & Upgrades
 wp-content/uploads/
 wp-content/upgrade/
-wp-content/backup-db/
+wp-content/backups/
 
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDEs and Editors
-.vscode/
-.idea/
-
-# Node modules (if you use tools like Tailwind or Vite)
-node_modules/
-npm-debug.log
-
-# Log files
+# Logs
 *.log
